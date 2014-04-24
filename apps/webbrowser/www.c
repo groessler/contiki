@@ -36,7 +36,7 @@
 #include <stddef.h>
 
 #include "ctk/ctk.h"
-#include "lib/ctk-textentry-cmdline.h"
+#include "ctk/ctk-textentry-cmdline.h"
 #include "contiki-net.h"
 #include "lib/petsciiconv.h"
 #include "sys/arg.h"
@@ -456,7 +456,6 @@ quit(void)
 PROCESS_THREAD(www_process, ev, data)
 {
   static struct ctk_widget *w;
-  static unsigned char i;
 #if WWW_CONF_WITH_WGET
   static char *argptr;
 #endif /* WWW_CONF_WITH_WGET */
