@@ -96,6 +96,7 @@ struct queuebuf *queuebuf_new_from_packetbuf_debug(const char *file, int line);
 struct queuebuf *queuebuf_new_from_packetbuf(void);
 #endif /* QUEUEBUF_DEBUG */
 void queuebuf_update_attr_from_packetbuf(struct queuebuf *b);
+void queuebuf_update_from_packetbuf(struct queuebuf *b);
 
 void queuebuf_to_packetbuf(struct queuebuf *b);
 void queuebuf_free(struct queuebuf *b);
@@ -108,7 +109,9 @@ packetbuf_attr_t queuebuf_attr(struct queuebuf *b, uint8_t type);
 
 void queuebuf_debug_print(void);
 
-#endif /* QUEUEBUF_H_ */
+int queuebuf_numfree(void);
+
+#endif /* __QUEUEBUF_H__ */
 
 /** @} */
 /** @} */
