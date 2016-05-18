@@ -6,8 +6,7 @@
 #endif
 
 #define CC_CONF_REGISTER_ARGS 1
-#define CC_CONF_FASTCALL __fastcall
-#define CC_CONF_INLINE   __inline
+#define CC_CONF_INLINE        __inline
 
 #define ARCH_DOESNT_NEED_ALIGNED_STRUCTS 1
 
@@ -171,8 +170,9 @@ typedef unsigned short uip_stats_t;
 #define SHELL_GUI_CONF_YSIZE 30
 
 
+#define TELNETD_CONF_MAX_IDLE_TIME 300
 #ifdef PLATFORM_BUILD
-#define TELNETD_CONF_GUI 1
+#define TELNETD_CONF_GUI             1
 #endif /* PLATFORM_BUILD */
 
 
