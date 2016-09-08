@@ -84,11 +84,13 @@ handle_periodic_timer(void *ptr)
   rpl_dag_t *dag = rpl_get_any_dag();
 
   rpl_purge_dags();
-  if(dag != NULL && RPL_IS_STORING(dag->instance)) {
-    rpl_purge_routes();
-  }
-  if(dag != NULL && RPL_IS_NON_STORING(dag->instance)) {
-    rpl_ns_periodic();
+  if(dag != NULL) {
+    if(RPL_IS_STORING(dag->instance)) {
+      rpl_purge_routes();
+    }
+    if(RPL_IS_NON_STORING(dag->instance)) {
+      rpl_ns_periodic();
+    }
   }
   rpl_recalculate_ranks();
 
@@ -254,7 +256,7 @@ static void
 handle_dao_timer(void *ptr)
 {
   rpl_instance_t *instance;
-#if RPL_CONF_MULTICAST
+#if RPL_WITH_MULTICAST
   uip_mcast6_route_t *mcast_route;
   uint8_t i;
 #endif
@@ -273,7 +275,7 @@ handle_dao_timer(void *ptr)
     /* Set the route lifetime to the default value. */
     dao_output(instance->current_dag->preferred_parent, instance->default_lifetime);
 
-#if RPL_CONF_MULTICAST
+#if RPL_WITH_MULTICAST
     /* Send DAOs for multicast prefixes only if the instance is in MOP 3 */
     if(instance->mop == RPL_MOP_STORING_MULTICAST) {
       /* Send a DAO for own multicast addresses */
